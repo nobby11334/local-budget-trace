@@ -1,0 +1,143 @@
+{
+  "id": "7629",
+  "name": "物価高騰対応重点支援地方創生臨時交付金",
+  "ministry": "内閣府",
+  "office": "地方創生推進室",
+  "sheetYear": "2025",
+  "executionYear": "2024",
+  "retrieved": "2026-11-03",
+  "unit": "円",
+  "downloadPage": "https://rssystem.go.jp/download-csv/2025",
+  "summary": [
+    {
+      "fiscalYear": "2024",
+      "budget": 3411966050993,
+      "execution": 2151949970000,
+      "carryover": 1230624500380,
+      "record": 42425
+    },
+    {
+      "fiscalYear": "2023",
+      "budget": 2690285000000,
+      "execution": 1012106761000,
+      "carryover": 1676823680993,
+      "record": 42427
+    }
+  ],
+  "blocks": [
+    {
+      "block": "A",
+      "name": "総務省",
+      "count": 1,
+      "amount": 2789292629000,
+      "role": "内閣府から予算を移替えし、各地方公共団体へ交付金を交付",
+      "record": 177875
+    },
+    {
+      "block": "B",
+      "name": "地方公共団体",
+      "count": 1788,
+      "amount": 2151949970000,
+      "role": "実施計画に基づく事業の実施",
+      "record": 177878
+    }
+  ],
+  "recipients": [
+    {
+      "name": "その他",
+      "corporateNumber": "",
+      "amount": 1024273345000,
+      "other": true,
+      "record": 177879
+    },
+    {
+      "name": "兵庫県",
+      "corporateNumber": "8000020280003",
+      "amount": 86749958000,
+      "other": false,
+      "record": 177881
+    },
+    {
+      "name": "北海道",
+      "corporateNumber": "7000020010006",
+      "amount": 109987533000,
+      "other": false,
+      "record": 177883
+    },
+    {
+      "name": "千葉県",
+      "corporateNumber": "4000020120006",
+      "amount": 96384836000,
+      "other": false,
+      "record": 177885
+    },
+    {
+      "name": "埼玉県",
+      "corporateNumber": "1000020110001",
+      "amount": 103891923000,
+      "other": false,
+      "record": 177887
+    },
+    {
+      "name": "大阪府",
+      "corporateNumber": "4000020270008",
+      "amount": 149260848000,
+      "other": false,
+      "record": 177889
+    },
+    {
+      "name": "愛知県",
+      "corporateNumber": "1000020230006",
+      "amount": 123067677000,
+      "other": false,
+      "record": 177891
+    },
+    {
+      "name": "東京都",
+      "corporateNumber": "8000020130001",
+      "amount": 183728537000,
+      "other": false,
+      "record": 177893
+    },
+    {
+      "name": "神奈川県",
+      "corporateNumber": "1000020140007",
+      "amount": 116755852000,
+      "other": false,
+      "record": 177895
+    },
+    {
+      "name": "福岡県",
+      "corporateNumber": "6000020400009",
+      "amount": 101592589000,
+      "other": false,
+      "record": 177897
+    },
+    {
+      "name": "静岡県",
+      "corporateNumber": "7000020220001",
+      "amount": 56256872000,
+      "other": false,
+      "record": 177899
+    }
+  ],
+  "sources": {
+    "1-2_": {
+      "filename": "1-2_RS_2025_基本情報_事業概要等.csv",
+      "url": "https://rssystem.go.jp/files/2025/rs/1-2_RS_2025_%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1_%E4%BA%8B%E6%A5%AD%E6%A6%82%E8%A6%81%E7%AD%89.zip",
+      "sha256": "663bd4c6ab389f9234dae118a6976067dfe96f76dfb72526fbd3b8a5b5709b8b"
+    },
+    "2-1_": {
+      "filename": "2-1_RS_2025_予算・執行_サマリ.csv",
+      "url": "https://rssystem.go.jp/files/2025/rs/2-1_RS_2025_%E4%BA%88%E7%AE%97%E3%83%BB%E5%9F%B7%E8%A1%8C_%E3%82%B5%E3%83%9E%E3%83%AA.zip",
+      "sha256": "0be8ff30f6ecf51c21544e0f0d9b544ffca8a3dd5ee4bb84749fdd06fd76f646"
+    },
+    "5-1_": {
+      "filename": "5-1_RS_2025_支出先_支出情報.csv",
+      "url": "https://rssystem.go.jp/files/2025/rs/5-1_RS_2025_%E6%94%AF%E5%87%BA%E5%85%88_%E6%94%AF%E5%87%BA%E6%83%85%E5%A0%B1.zip",
+      "sha256": "843c6858308f0d27287df5544abb4626484936290b77b9b869b15217803fc474"
+    }
+  },
+  "matching": "国側CSVと自治体の公表資料を制度名で照合。自治体別交付決定額と国側記録の全件突合は未実施。県名で掲載された金額を県単体又は県内全市町村への配分と断定しない。",
+  "validation": "Bブロック合計＝支出先合計（その他を含む）＝2024年度執行額。ブロックAの移替額は合算しない。"
+}

@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-03",
+  "year": "2024",
+  "cities": 1741,
+  "passed": 5223,
+  "failed": 0,
+  "exactMatches": 5222,
+  "withinOneThousandYen": 1,
+  "rounding": [
+    {
+      "code": "24216",
+      "name": "伊賀市",
+      "differenceThousandYen": -1
+    }
+  ],
+  "checks": [
+    "歳入の内訳合計と概況の総額（1千円差以内を明示）",
+    "目的別歳出合計＝概況の歳出総額",
+    "性質別歳出合計＝概況の歳出総額"
+  ],
+  "source": "https://www.soumu.go.jp/iken/zaisei/r06_shichouson.html",
+  "limitations": [
+    "金額整合性の検査であり政策効果の検証ではない",
+    "国と自治体の資金移転全件照合ではない",
+    "2020～2023年度の原表再照合は未実施"
+  ]
+}
