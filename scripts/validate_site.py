@@ -5,31 +5,35 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1] / 'dist'
 for file in root.glob('*.json'):
     json.loads(file.read_text())
-ledger = json.loads((root / 'bunkyo-ledger.json').read_text())
-seen = set()
-parents = 0
-
-def visit(node, level):
-    global parents
-    assert node['id'] not in seen, f"Duplicate ID: {node['id']}"
-    seen.add(node['id'])
-    assert node['level'] == level
-    assert isinstance(node['amount'], int) and node['amount'] >= 0
-    assert 140 <= node['page'] <= 271
-    if node['children']:
-        parents += 1
-        assert node['amount'] == sum(c['amount'] for c in node['children']), node['id']
-    for child in node['children']:
-        visit(child, level + 1)
-
-for node in ledger['roots']:
-    visit(node, 0)
-assert len(ledger['roots']) == 12
-assert sum(n['amount'] for n in ledger['roots']) == ledger['total'] == 135_937_867_776
-assert len(seen) == ledger['nodes'] == 1654
-assert parents == ledger['counts']['complete'] == 367
+index = json.loads((root / 'ledger-index.json').read_text())
+assert index['latest'] == max(index['years'])
+total_nodes = total_parents = 0
+for year, info in index['years'].items():
+    ledger = json.loads((root / info['file']).read_text())
+    assert ledger['year'] == year and ledger['sha256'] == info['sha256']
+    assert ledger['total'] == info['total'] and ledger['nodes'] == info['nodes']
+    seen = set()
+    counts = [0]
+    def visit(node, level):
+        assert node['id'] not in seen, f"Duplicate ID: {node['id']}"
+        seen.add(node['id'])
+        assert node['level'] == level
+        assert isinstance(node['amount'], int) and node['amount'] >= 0
+        assert ledger['sourcePages'][0] <= node['page'] <= ledger['sourcePages'][1]
+        if node['children']:
+            counts[0] += 1
+            assert node['amount'] == sum(c['amount'] for c in node['children']), node['id']
+        for child in node['children']:
+            visit(child, level + 1)
+    for node in ledger['roots']:
+        visit(node, 0)
+    assert len(ledger['roots']) == 12
+    assert sum(n['amount'] for n in ledger['roots']) == ledger['total']
+    assert len(seen) == ledger['nodes']
+    assert counts[0] == ledger['counts']['complete']
+    total_nodes += len(seen); total_parents += counts[0]
 parties = json.loads((root / 'transactions.json').read_text())
 assert len({r['id'] for r in parties['records']}) == len(parties['records'])
 assert all(isinstance(r['amount'], int) and r['amount'] >= 0 for r in parties['records'])
 assert all((root / name).is_file() for name in ['index.html', 'style.css', 'app.js', 'ledger.js', 'parties.js', 'finance.json', 'spending-tree.json', 'national.json', 'trace.json', 'transactions.json'])
-print(f'Validated {len(seen):,} ledger nodes, {parents} parent-child totals, 12 chapter totals, and static data files.')
+print(f'Validated {total_nodes:,} ledger nodes, {total_parents} parent-child totals, all annual chapter totals, and static data files.')
