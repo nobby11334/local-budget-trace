@@ -20,7 +20,7 @@ import urllib.request
 from ledger_parser import parse_ledger
 
 ROOT = Path(__file__).resolve().parents[1]
-ALLOWED = {'www.city.bunkyo.lg.jp', 'www.soumu.go.jp'}
+ALLOWED = {'www.city.bunkyo.lg.jp', 'www.soumu.go.jp', 'www.pref.osaka.lg.jp', 'www.pref.fukuoka.lg.jp'}
 
 class Links(HTMLParser):
     def __init__(self):
@@ -160,6 +160,14 @@ def run(config_path=None):
                         report['needsAction'].append(item)
         except (OSError,TimeoutError) as exc:
             report['errors'].append(dict(id='national-discovery',message=str(exc)))
+        if config.get('latest2025'):
+            from import_latest_2025 import update
+            try:
+                report['datasets'].append(update(stage,get))
+            except (OSError,TimeoutError) as exc:
+                # Network failures retain the entire previous FY2025 snapshot.
+                report['errors'].append(dict(id='latest-2025',message=str(exc)))
+                report['datasets'].append(dict(id='latest-2025',status='unavailable-kept-existing'))
         # A stale or manually modified unchanged JSON must still pass full validation.
         dump(stage/'dist/update-status.json',report)
         subprocess.run([sys.executable,str(stage/'scripts/validate_site.py')],cwd=stage,check=True)
