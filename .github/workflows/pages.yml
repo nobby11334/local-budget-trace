@@ -41,6 +41,7 @@ jobs:
         run: python scripts/auto_update.py
       - name: Check scripts and fiscal data
         run: |
+          node --test tests/test_analytics.cjs
           for script in dist/*.js; do node --check "$script"; done
           python scripts/validate_site.py
       - name: Record verified snapshot and source check

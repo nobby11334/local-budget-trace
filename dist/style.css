@@ -7,3 +7,5 @@
 #latest .compare-controls label:has(input[type="checkbox"]){display:flex;align-items:center;gap:8px;align-self:center;max-width:260px}#latest input[type="checkbox"]{width:17px;height:17px;min-height:17px;margin:0;flex:0 0 17px}#latest .tablewrap thead{position:sticky;top:0;background:var(--paper,#f6f7f3);z-index:1}
 
 .pref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}.pref-choice{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid #dce1de;background:#fff;color:var(--navy);padding:13px 12px;border-radius:6px;text-align:left;cursor:pointer}.pref-choice span{font-size:11px;color:var(--muted)}.pref-choice:hover,.pref-choice.selected{background:#edf3ed;border-color:var(--teal)}#clearCity{margin-bottom:12px}
+
+#analyticsInfo{max-width:700px;width:calc(100% - 48px);border:1px solid #dce1de;border-radius:10px;padding:26px;color:var(--navy);line-height:1.8}#analyticsInfo::backdrop{background:rgba(15,35,46,.45)}#analyticsInfo p{font-size:13px}#closeAnalyticsInfo{float:right}#openAnalyticsInfo{margin-top:10px}
